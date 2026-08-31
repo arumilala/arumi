@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunera — Plant & Flower Shop</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f7f6f1;
+            color: #26352b;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(247, 246, 241, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid #e5e5dc;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #718b70;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #344239;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #718b70;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 150px 8% 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .hero-text {
+            max-width: 550px;
+        }
+
+        .hero-text small {
+            color: #718b70;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(48px, 7vw, 85px);
+            font-weight: 400;
+            line-height: 1;
+            margin: 20px 0;
+        }
+
+        .hero h1 em {
+            color: #718b70;
+        }
+
+        .hero p {
+            color: #68736b;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            max-width: 450px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #344b3b;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #718b70;
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            width: 420px;
+            height: 500px;
+            border-radius: 220px 220px 20px 20px;
+            background:
+                linear-gradient(rgba(40,60,45,.1), rgba(40,60,45,.1)),
+                url("https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=700&q=80")
+                center/cover;
+        }
+
+        /* PRODUCTS */
+        .products {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title small {
+            color: #718b70;
+            letter-spacing: 3px;
+        }
+
+        .section-title h2 {
+            font-family: Georgia, serif;
+            font-size: 45px;
+            font-weight: 400;
+            margin-top: 10px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e8e8df;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 35px rgba(40, 60, 45, 0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 22px;
+        }
+
+        .card h3 {
+            font-family: Georgia, serif;
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .card p {
+            color: #7a837c;
+            font-size: 14px;
+            margin: 8px 0 18px;
+        }
+
+        .price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price strong {
+            color: #344b3b;
+        }
+
+        .buy {
+            background: #edf1e9;
+            color: #344b3b;
+            padding: 9px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .buy:hover {
+            background: #344b3b;
+            color: white;
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 100px 8%;
+            background: #e9eee5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .about-text {
+            max-width: 600px;
+        }
+
+        .about h2 {
+            font-family: Georgia, serif;
+            font-size: 45px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            line-height: 1.9;
+            color: #5d685f;
+        }
+
+        .about-box {
+            background: #344b3b;
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            min-width: 280px;
+        }
+
+        .about-box h3 {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #26352b;
+            color: #dce3da;
+        }
+
+        footer h3 {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: #aeb9b0;
+        }
+
+        .wa {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 22px;
+            border: 1px solid #8fa58f;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 130px 7% 70px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-image {
+                width: 100%;
+                height: 400px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">LUNE<span>RA</span></div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-text">
+            <small>Plant & Flower Boutique</small>
+
+            <h1>
+                Bring a little
+                <em>nature</em>
+                home.
+            </h1>
+
+            <p>
+                Tanaman dan bunga pilihan untuk membuat ruangmu
+                terasa lebih hidup, tenang, dan penuh warna.
+            </p>
+
+            <a href="#shop" class="btn">
+                Explore Collection →
+            </a>
+        </div>
+
+        <div class="hero-image"></div>
+
+    </section>
+
+
+    <!-- SHOP -->
+    <section class="products" id="shop">
+
+        <div class="section-title">
+            <small>OUR COLLECTION</small>
+            <h2>Find your green.</h2>
+        </div>
+
+        <div class="product-grid">
+
+            <!-- PRODUCT 1 -->
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=700&q=80">
+
+                <div class="card-content">
+
+                    <h3>Monstera</h3>
+
+                    <p>
+                        Tanaman indoor dengan daun
+                        tropis yang elegan.
+                    </p>
+
+                    <div class="price">
+                        <strong>Rp75.000</strong>
+
+                        <a
+                            class="buy"
+                            href="https://wa.me/6281234567890?text=Halo%20Lunera,%20saya%20ingin%20membeli%20Monstera%20seharga%20Rp75.000."
+                            target="_blank">
+                            Buy →
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- PRODUCT 2 -->
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1455582916367-25f75bfc6710?auto=format&fit=crop&w=700&q=80">
+
+                <div class="card-content">
+
+                    <h3>Lavender</h3>
+
+                    <p>
+                        Bunga lembut dengan aroma
+                        yang menenangkan.
+                    </p>
+
+                    <div class="price">
+                        <strong>Rp55.000</strong>
+
+                        <a
+                            class="buy"
+                            href="https://wa.me/6281234567890?text=Halo%20Lunera,%20saya%20ingin%20membeli%20Lavender%20seharga%20Rp55.000."
+                            target="_blank">
+                            Buy →
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- PRODUCT 3 -->
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1495231916356-a86217efff12?auto=format&fit=crop&w=700&q=80">
+
+                <div class="card-content">
+
+                    <h3>Rose Bouquet</h3>
+
+                    <p>
+                        Buket mawar segar untuk
+                        momen spesialmu.
+                    </p>
+
+                    <div class="price">
+                        <strong>Rp120.000</strong>
+
+                        <a
+                            class="buy"
+                            href="https://wa.me/6281234567890?text=Halo%20Lunera,%20saya%20ingin%20membeli%20Rose%20Bouquet%20seharga%20Rp120.000."
+                            target="_blank">
+                            Buy →
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+
+        <div class="about-text">
+
+            <h2>Grown with care.</h2>
+
+            <p>
+                Lunera hadir untuk membawa sedikit ketenangan
+                dari alam ke dalam ruang sehari-hari.
+                Setiap tanaman dan bunga dipilih dengan
+                perhatian agar kamu mendapatkan sesuatu
+                yang segar dan penuh kehidupan.
+            </p>
+
+        </div>
+
+        <div class="about-box">
+
+            <h3>Why Lunera?</h3>
+
+            <p>
+                🌱 Fresh plants<br>
+                🌷 Hand-picked flowers<br>
+                📦 Safe packaging<br>
+                💬 Easy WhatsApp order
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <h3>Lunera</h3>
+
+        <p>
+            A little green corner for your everyday life.
+        </p>
+
+        <a
+            class="wa"
+            href="https://wa.me/6281234567890?text=Halo%20Lunera,%20saya%20ingin%20bertanya%20tentang%20produk."
+            target="_blank">
+            Chat via WhatsApp
+        </a>
+
+        <p style="margin-top:25px;">
+            © 2026 Lunera Plant & Flower Shop
+        </p>
+
+    </footer>
+
+</body>
+  </html>
